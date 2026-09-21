@@ -1,0 +1,45 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+
+# ===== 训练产物（不要上传！动辄几百 MB~几 GB）=====
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.onnx
+outputs/
+runs/
+logs/
+wandb/
+checkpoints/
+
+# ===== 数据 =====
+data/
+datasets/
+*.zip
+*.tar
+*.tar.gz
+
+# ===== 编辑器 / 系统 =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== 隐私：个人材料一律不进仓库 =====
+private/
+*.docx
+*.xlsx
+*.pdf
+.env
+.gh_token
+*.key
+*.pem
+id_rsa*
