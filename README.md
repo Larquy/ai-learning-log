@@ -17,6 +17,7 @@
 | 训练与推理基础 | 🟡 | KV Cache：解码时缓存 K/V、省算力换显存 | [notes/20260921_KV-Cache.md](notes/20260921_KV-Cache.md) |
 | 数据挖掘与信息检索 | 🟡 | Web Mining 三块（内容/结构/使用挖掘）+ 暑期课的备考路线 | [notes/20260921_Web-Mining（网络数据挖掘）.md](notes/20260921_Web-Mining（网络数据挖掘）.md) |
 | 论文阅读 | 🟡 | Agent SFT 的 loss mask 与 RL 探索（ActObs 论文）+ 前置知识清单与三遍读法 | [notes/20260921_论文_Dont-Mask-the-Environment.md](notes/20260921_论文_Dont-Mask-the-Environment.md) |
+| 前沿模型动态 | 🟡 | Jev / System One 模型：不生成文本、直接返回类型化决策与校准概率 | [notes/20260921_Jev与System-One模型.md](notes/20260921_Jev与System-One模型.md) |
 | 环境与工具链 | ✅ | WSL、Python 环境、Git 工作流、提交前隐私扫描 | [00-setup/20260921_环境清单.md](00-setup/20260921_环境清单.md) |
 | PyTorch 与深度学习基础 | ⬜ | 张量 / 自动求导 / 训练循环 → 自己写 MNIST | — |
 | Transformer 与大模型 | ⬜ | 注意力机制 → nanoGPT → LoRA 微调 | — |
