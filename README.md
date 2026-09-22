@@ -17,7 +17,9 @@
 | 训练与推理基础 | 🟡 | KV Cache；Prefill/Decode 两种负载（算力 vs 带宽）；MoE 稀疏与路由；多模态 Encoder；**梯度检查点＝拿计算换显存** | [笔记①](notes/20260921_KV-Cache.md) ｜ [笔记②](notes/20260922_推理负载与梯度检查点.md) |
 | 数据挖掘与信息检索 | 🟡 | Web Mining 三块（内容/结构/使用挖掘）+ 暑期课的备考路线 | [notes/20260921_Web-Mining（网络数据挖掘）.md](notes/20260921_Web-Mining（网络数据挖掘）.md) |
 | 论文阅读 | 🟡 | Agent SFT 的 loss mask 与 RL 探索（ActObs 论文）+ 前置知识清单与三遍读法 | [notes/20260921_论文_Dont-Mask-the-Environment.md](notes/20260921_论文_Dont-Mask-the-Environment.md) |
-| 前沿模型动态 | 🟡 | Jev / System One 模型：不生成文本、直接返回类型化决策与校准概率 | [notes/20260921_Jev与System-One模型.md](notes/20260921_Jev与System-One模型.md) |
+| 前沿模型动态 | 🟡 | Jev / System One 模型（不生成文本、只输出类型化决策 + 校准概率） | [notes/20260921_Jev与System-One模型.md](notes/20260921_Jev与System-One模型.md) |
+| **深度学习地基**（前置知识） | 🟡 | 导数与链式法则（最关键）、矩阵乘法与形状、函数斜率直觉；含 3 道自测题 | [notes/20260922_深度学习前置知识清单.md](notes/20260922_深度学习前置知识清单.md) |
+| 训练与推理原理 | 🟡 | 梯度下降 · 反向传播链式法则 · 激活函数 · 梯度消失/爆炸 · CNN 卷积 | [notes/20260922_推理负载与梯度检查点.md](notes/20260922_推理负载与梯度检查点.md) |
 | 环境与工具链 | ✅ | WSL、Python 环境、Git 工作流、提交前隐私扫描 | [00-setup/20260921_环境清单.md](00-setup/20260921_环境清单.md) |
 | PyTorch 与深度学习基础 | ⬜ | 张量 / 自动求导 / 训练循环 → 自己写 MNIST | — |
 | Transformer 与大模型 | ⬜ | 注意力机制 → nanoGPT → LoRA 微调 | — |
