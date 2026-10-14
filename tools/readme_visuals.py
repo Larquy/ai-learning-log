@@ -5,12 +5,13 @@
 改标题/数字：改下面 CFG 即可，不用重画
 """
 import pathlib, re, shutil, subprocess, sys, tempfile
+from urllib.parse import quote
 
 CFG = {
     "title": "AI 学习记录",
     "sub":   "从零基础 → 大模型训练与推理系统",
     "stat1": "02 / 05", "lab1": "阶 段",
-    "stat2": "6",       "lab2": "进 行 中 模 块",
+    "stat2": "6",       "lab2": "进 行 中 模 块", "stage_link": "02-transformer/",
 }
 BLUE, ORANGE, GREY = "#1B44C8", "#E4593A", "#c3cad6"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -108,6 +109,8 @@ def main():
         sys.exit(1)
     render(banner_html(CFG), ROOT / "assets/banner.png", 1200, 246)
     refresh_nav()
+    make_stage_readmes()
+    refresh_badges(CFG)
     html, h = progress_html(rows)
     render(html, ROOT / "assets/progress.png", 1180, h)
     print(f"共 {len(rows)} 个模块")
@@ -154,5 +157,61 @@ def refresh_nav():
         t = t[:k] + "\n" + block + "\n" + t[k:]
     rm.write_text(t, encoding="utf-8")
     print("✓ README 导航已刷新")
+
+STAGES = {
+    "00-setup": ("环境与工具链", "WSL、Python 环境、Git 工作流、云 GPU 上手 —— 后面所有动手实验的地基"),
+    "01-pytorch-basics": ("PyTorch 基础", "张量、自动求导、训练循环 → 手写一个能跑的 MNIST"),
+    "02-transformer": ("Transformer 与大模型", "注意力机制、Attention is All You Need、FlashAttention、nanoGPT / LoRA"),
+    "03-database": ("数据库与 AI4DB", "存储与索引、查询优化 → GPTuner"),
+    "04-systems": ("分布式训练", "数据并行、ZeRO、通信 → mLoRA 复现"),
+    "05-practice": ("实战项目", "能跑的东西：从零实现、复现实验、小工具"),
+    "刷题记录": ("刷题记录", "算法题与提交记录"),
+}
+
+def make_stage_readmes():
+    made = []
+    for d in sorted(ROOT.iterdir()):
+        if not d.is_dir() or d.name in ("assets", "tools", ".git"):
+            continue
+        r = d / "README.md"
+        if r.exists():
+            continue
+        title, desc = STAGES.get(d.name, (d.name + "/", ""))
+        mds = sorted(p.name for p in d.glob("*.md") if not p.name.startswith("README"))
+        lst = "\n".join(f"- [{m[:-3][9:]}]({m})" for m in mds) or "- （本阶段还没有笔记）"
+        r.write_text(f"# {title}\n\n{desc}\n\n## 这一阶段的笔记\n\n{lst}\n\n[← 返回仓库首页](../README.md)\n",
+                     encoding="utf-8")
+        made.append(str(r.relative_to(ROOT)))
+    print("✓ 阶段 README：", ", ".join(made) if made else "（都有，无需生成）")
+
+BADGE_BEGIN = "<!-- BADGE:BEGIN -->"
+BADGE_END = "<!-- BADGE:END -->"
+
+def badges_block(c):
+    s = "https://img.shields.io/badge/"
+    stage = c.get("stage_link", "")
+    b1 = f"[![{c.get('badge1', '阶段')}]({s}{quote(c.get('badge1', '阶段'))}-{c['stat1'].replace(' ', '%20').replace('/', '%2F')}-1B44C8?style=flat-square)]({stage or '#map'})"
+    b2 = f"[![进行中]({s}%F0%9F%9F%A1%20%E8%BF%9B%E8%A1%8C%E4%B8%AD-{c['stat2']}-E4593A?style=flat-square)](#map)"
+    b3 = f"[![待学]({s}%F0%9F%93%8C%20%E5%BE%85%E5%AD%A6-%E6%B8%85%E5%8D%95-6b7893?style=flat-square)](#todo)"
+    return "\n".join([BADGE_BEGIN, b1, b2, b3, BADGE_END])
+
+def refresh_badges(c):
+    rm = ROOT / "README.md"
+    t = rm.read_text(encoding="utf-8")
+    block = badges_block(c)
+    if BADGE_BEGIN in t and BADGE_END in t:
+        i = t.index(BADGE_BEGIN); j = t.index(BADGE_END) + len(BADGE_END)
+        t = t[:i] + block + t[j:]
+    else:
+        lines = t.split("\n")
+        keep, out, done = [], [], False
+        for ln in lines:
+            if ln.startswith("![") and "shields.io" in ln and not done:
+                out.append(block); done = True
+                continue
+            out.append(ln)
+        t = "\n".join(out)
+    rm.write_text(t, encoding="utf-8")
+    print("✓ 徽章已刷新（可点击）")
 if __name__ == "__main__":
     main()

@@ -4,7 +4,11 @@
 
 ![AI 学习记录](assets/banner.png)
 
-![阶段](https://img.shields.io/badge/%E9%98%B6%E6%AE%B5-02%20%2F%2005-1B44C8?style=flat-square)
+<!-- BADGE:BEGIN -->
+[![阶段](https://img.shields.io/badge/%E9%98%B6%E6%AE%B5-02%20%2F%2005-1B44C8?style=flat-square)](02-transformer/)
+[![进行中](https://img.shields.io/badge/%F0%9F%9F%A1%20%E8%BF%9B%E8%A1%8C%E4%B8%AD-6-E4593A?style=flat-square)](#map)
+[![待学](https://img.shields.io/badge/%F0%9F%93%8C%20%E5%BE%85%E5%AD%A6-%E6%B8%85%E5%8D%95-6b7893?style=flat-square)](#todo)
+<!-- BADGE:END -->
 ![已通](https://img.shields.io/badge/%E2%9C%85%20%E5%B7%B2%E9%80%9A-1%20%E4%B8%AA%E6%A8%A1%E5%9D%97-1B44C8?style=flat-square)
 ![进行中](https://img.shields.io/badge/%F0%9F%9F%A1%20%E8%BF%9B%E8%A1%8C%E4%B8%AD-6%20%E4%B8%AA%E6%A8%A1%E5%9D%97-E4593A?style=flat-square)
 
