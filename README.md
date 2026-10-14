@@ -7,7 +7,6 @@
 ![阶段](https://img.shields.io/badge/%E9%98%B6%E6%AE%B5-02%20%2F%2005-1B44C8?style=flat-square)
 ![已通](https://img.shields.io/badge/%E2%9C%85%20%E5%B7%B2%E9%80%9A-1%20%E4%B8%AA%E6%A8%A1%E5%9D%97-1B44C8?style=flat-square)
 ![进行中](https://img.shields.io/badge/%F0%9F%9F%A1%20%E8%BF%9B%E8%A1%8C%E4%B8%AD-6%20%E4%B8%AA%E6%A8%A1%E5%9D%97-E4593A?style=flat-square)
-![未开始](https://img.shields.io/badge/%E2%AC%9C%20%E6%9C%AA%E5%BC%80%E5%A7%8B-2-a0a0a0?style=flat-square)
 
 </div>
 
@@ -20,23 +19,34 @@
 
 ---
 
+## 🕘 最近更新
+
+| 日期 | 笔记 |
+|---|---|
+| 09-23 | [云 GPU 上手清单](00-setup/20260923_云GPU上手清单.md) |
+| 09-22 | [推理负载与梯度检查点](notes/20260922_推理负载与梯度检查点.md) |
+| 09-22 | [深度学习前置知识清单（含 3 道自测）](notes/20260922_深度学习前置知识清单.md) |
+| 09-21 | [KV Cache](notes/20260921_KV-Cache.md) |
+
+---
+
 ## 🗺️ 知识地图（学到哪了）
 
-图例：✅ 能自己讲清 + 动手做过 · 🟡 正在学 · ⬜ 还没开始
+图例：`██████████` ✅ 能自己讲清＋动手做过 ｜ `██████░░░░` 🟡 正在学 ｜ `░░░░░░░░░░` ⬜ 还没开始
 
 | 模块 | 状态 | 已经掌握的内容 | 笔记 |
 |---|---|---|---|
-| 训练与推理基础 | 🟡 | KV Cache；Prefill/Decode 两种负载（算力 vs 带宽）；MoE 稀疏与路由；多模态 Encoder；**梯度检查点＝拿计算换显存** | [笔记①](notes/20260921_KV-Cache.md) ｜ [笔记②](notes/20260922_推理负载与梯度检查点.md) |
-| 数据挖掘与信息检索 | 🟡 | Web Mining 三块（内容/结构/使用挖掘）+ 暑期课的备考路线 | [notes/20260921_Web-Mining（网络数据挖掘）.md](notes/20260921_Web-Mining（网络数据挖掘）.md) |
-| 论文阅读 | 🟡 | Agent SFT 的 loss mask 与 RL 探索（ActObs 论文）+ 前置知识清单与三遍读法 | [notes/20260921_论文_Dont-Mask-the-Environment.md](notes/20260921_论文_Dont-Mask-the-Environment.md) |
-| 前沿模型动态 | 🟡 | Jev / System One 模型（不生成文本、只输出类型化决策 + 校准概率） | [notes/20260921_Jev与System-One模型.md](notes/20260921_Jev与System-One模型.md) |
-| **深度学习地基**（前置知识） | 🟡 | 导数与链式法则（最关键）、矩阵乘法与形状、函数斜率直觉；含 3 道自测题 | [notes/20260922_深度学习前置知识清单.md](notes/20260922_深度学习前置知识清单.md) |
-| 训练与推理原理 | 🟡 | 梯度下降 · 反向传播链式法则 · 激活函数 · 梯度消失/爆炸 · CNN 卷积 | [notes/20260922_推理负载与梯度检查点.md](notes/20260922_推理负载与梯度检查点.md) |
-| 环境与工具链 | ✅ | WSL、Python 环境、Git 工作流、提交前隐私扫描、**云 GPU 上手（AutoDL）** | [00-setup/20260921_环境清单.md](00-setup/20260921_环境清单.md) ｜ [00-setup/20260923_云GPU上手清单.md](00-setup/20260923_云GPU上手清单.md) |
-| PyTorch 与深度学习基础 | 🟡 | 张量 / 自动求导 / 训练循环 → 自己写 MNIST（云 GPU 清单已就位、XOR 骨架已建，等真机跑通） | [XOR 骨架](05-practice/xor-from-scratch/) |
-| Transformer 与大模型 | 🟡 | 正在读 Attention is All You Need；下一步 GPU 内存层级 → FlashAttention → nanoGPT/LoRA（**课程侧**的词元化/Word2Vec/架构笔记见 [tech-learning-log](https://github.com/Larquy/tech-learning-log)）| — |
-| 数据库与 AI4DB | ⬜ | 存储与索引 / 查询优化 → GPTuner | — |
-| 分布式训练 | ⬜ | 数据并行 / ZeRO / 通信 → mLoRA 复现 | — |
+| 训练与推理基础 | `██████░░░░` 🟡 | KV Cache；Prefill/Decode 两种负载（算力 vs 带宽）；MoE 稀疏与路由；多模态 Encoder；**梯度检查点＝拿计算换显存** | [笔记①](notes/20260921_KV-Cache.md) ｜ [笔记②](notes/20260922_推理负载与梯度检查点.md) |
+| 数据挖掘与信息检索 | `██████░░░░` 🟡 | Web Mining 三块（内容/结构/使用挖掘）+ 暑期课的备考路线 | [notes/20260921_Web-Mining（网络数据挖掘）.md](notes/20260921_Web-Mining（网络数据挖掘）.md) |
+| 论文阅读 | `██████░░░░` 🟡 | Agent SFT 的 loss mask 与 RL 探索（ActObs 论文）+ 前置知识清单与三遍读法 | [notes/20260921_论文_Dont-Mask-the-Environment.md](notes/20260921_论文_Dont-Mask-the-Environment.md) |
+| 前沿模型动态 | `██████░░░░` 🟡 | Jev / System One 模型（不生成文本、只输出类型化决策 + 校准概率） | [notes/20260921_Jev与System-One模型.md](notes/20260921_Jev与System-One模型.md) |
+| **深度学习地基**（前置知识） | `██████░░░░` 🟡 | 导数与链式法则（最关键）、矩阵乘法与形状、函数斜率直觉；含 3 道自测题 | [notes/20260922_深度学习前置知识清单.md](notes/20260922_深度学习前置知识清单.md) |
+| 训练与推理原理 | `██████░░░░` 🟡 | 梯度下降 · 反向传播链式法则 · 激活函数 · 梯度消失/爆炸 · CNN 卷积 | [notes/20260922_推理负载与梯度检查点.md](notes/20260922_推理负载与梯度检查点.md) |
+| 环境与工具链 | `██████████` ✅ | WSL、Python 环境、Git 工作流、提交前隐私扫描、**云 GPU 上手（AutoDL）** | [00-setup/20260921_环境清单.md](00-setup/20260921_环境清单.md) ｜ [00-setup/20260923_云GPU上手清单.md](00-setup/20260923_云GPU上手清单.md) |
+| PyTorch 与深度学习基础 | `██████░░░░` 🟡 | 张量 / 自动求导 / 训练循环 → 自己写 MNIST（云 GPU 清单已就位、XOR 骨架已建，等真机跑通） | [XOR 骨架](05-practice/xor-from-scratch/) |
+| Transformer 与大模型 | `██████░░░░` 🟡 | 正在读 Attention is All You Need；下一步 GPU 内存层级 → FlashAttention → nanoGPT/LoRA（**课程侧**的词元化/Word2Vec/架构笔记见 [tech-learning-log](https://github.com/Larquy/tech-learning-log)）| — |
+| 数据库与 AI4DB | `░░░░░░░░░░` ⬜ | 存储与索引 / 查询优化 → GPTuner | — |
+| 分布式训练 | `░░░░░░░░░░` ⬜ | 数据并行 / ZeRO / 通信 → mLoRA 复现 | — |
 
 📚 **学习资源汇总 → [学习资源.md](学习资源.md)**（按主题归档；每次拿到新资源自动追加）
 
