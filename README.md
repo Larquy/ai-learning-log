@@ -4,6 +4,9 @@
 
 四川大学 · 计算机科学与技术
 
+> 分工：**本仓库只放自学线** —— 按阶段路线学的笔记、论文阅读、AI 日报概念；
+> **学校课程**（含人工智能概论）的课堂纪要放 [tech-learning-log](https://github.com/Larquy/tech-learning-log) ✓ 同主题**不重复维护** ✓
+
 > 规则：笔记自己整理；**代码保证能跑通再提交**；不放任何个人材料（有提交前自动扫描兜底）。
 
 ---
@@ -22,7 +25,7 @@
 | 训练与推理原理 | 🟡 | 梯度下降 · 反向传播链式法则 · 激活函数 · 梯度消失/爆炸 · CNN 卷积 | [notes/20260922_推理负载与梯度检查点.md](notes/20260922_推理负载与梯度检查点.md) |
 | 环境与工具链 | ✅ | WSL、Python 环境、Git 工作流、提交前隐私扫描、**云 GPU 上手（AutoDL）** | [00-setup/20260921_环境清单.md](00-setup/20260921_环境清单.md) ｜ [00-setup/20260923_云GPU上手清单.md](00-setup/20260923_云GPU上手清单.md) |
 | PyTorch 与深度学习基础 | 🟡 | 张量 / 自动求导 / 训练循环 → 自己写 MNIST（云 GPU 清单已就位、XOR 骨架已建，等真机跑通） | [XOR 骨架](05-practice/xor-from-scratch/) |
-| Transformer 与大模型 | 🟡 | 正在读 Attention is All You Need；下一步 GPU 内存层级 → FlashAttention → nanoGPT/LoRA | — |
+| Transformer 与大模型 | 🟡 | 正在读 Attention is All You Need；下一步 GPU 内存层级 → FlashAttention → nanoGPT/LoRA（**课程侧**的词元化/Word2Vec/架构笔记见 [tech-learning-log](https://github.com/Larquy/tech-learning-log)）| — |
 | 数据库与 AI4DB | ⬜ | 存储与索引 / 查询优化 → GPTuner | — |
 | 分布式训练 | ⬜ | 数据并行 / ZeRO / 通信 → mLoRA 复现 | — |
 
