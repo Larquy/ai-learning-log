@@ -34,7 +34,42 @@
 | `02-transformer/` | [README](02-transformer/README.md) |
 | `03-database/` | [README](03-database/README.md) |
 | `04-systems/` | [README](04-systems/README.md) |
+| `05-practice/` | [README](05-practice/README.md) |
 | `notes/` | [Jev与System-One模型](notes/20260921_Jev与System-One模型.md) ｜ [KV-Cache](notes/20260921_KV-Cache.md) ｜ [Web-Mining（网络数据挖掘）](notes/20260921_Web-Mining（网络数据挖掘）.md) ｜ [论文_Dont-Mask-the-Environment](notes/20260921_论文_Dont-Mask-the-Environment.md) ｜ [推理负载与梯度检查点](notes/20260922_推理负载与梯度检查点.md) ｜ [深度学习前置知识清单](notes/20260922_深度学习前置知识清单.md) |
+
+<a id="timeline"></a>
+
+## 📅 时间线
+
+| 日期 | 位置 | 笔记 |
+|---|---|---|
+| 2026-09-23 | `00-setup/` | [云GPU上手清单](00-setup/20260923_云GPU上手清单.md) |
+| 2026-09-22 | `notes/` | [深度学习前置知识清单](notes/20260922_深度学习前置知识清单.md) |
+| 2026-09-22 | `notes/` | [推理负载与梯度检查点](notes/20260922_推理负载与梯度检查点.md) |
+| 2026-09-21 | `notes/` | [论文_Dont-Mask-the-Environment](notes/20260921_论文_Dont-Mask-the-Environment.md) |
+| 2026-09-21 | `notes/` | [Web-Mining（网络数据挖掘）](notes/20260921_Web-Mining（网络数据挖掘）.md) |
+| 2026-09-21 | `notes/` | [KV-Cache](notes/20260921_KV-Cache.md) |
+| 2026-09-21 | `notes/` | [Jev与System-One模型](notes/20260921_Jev与System-One模型.md) |
+| 2026-09-21 | `00-setup/` | [环境清单](00-setup/20260921_环境清单.md) |
+
+[↑ 回到顶部](#top)
+
+<a id="timeline"></a>
+
+## 📅 时间线
+
+| 日期 | 位置 | 笔记 |
+|---|---|---|
+| 2026-09-23 | `00-setup/` | [云GPU上手清单](00-setup/20260923_云GPU上手清单.md) |
+| 2026-09-22 | `notes/` | [深度学习前置知识清单](notes/20260922_深度学习前置知识清单.md) |
+| 2026-09-22 | `notes/` | [推理负载与梯度检查点](notes/20260922_推理负载与梯度检查点.md) |
+| 2026-09-21 | `notes/` | [论文_Dont-Mask-the-Environment](notes/20260921_论文_Dont-Mask-the-Environment.md) |
+| 2026-09-21 | `notes/` | [Web-Mining（网络数据挖掘）](notes/20260921_Web-Mining（网络数据挖掘）.md) |
+| 2026-09-21 | `notes/` | [KV-Cache](notes/20260921_KV-Cache.md) |
+| 2026-09-21 | `notes/` | [Jev与System-One模型](notes/20260921_Jev与System-One模型.md) |
+| 2026-09-21 | `00-setup/` | [环境清单](00-setup/20260921_环境清单.md) |
+
+[↑ 回到顶部](#top)
 
 [↑ 回到顶部](#top)
 

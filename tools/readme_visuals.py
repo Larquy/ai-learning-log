@@ -4,7 +4,7 @@
 用法：  python tools/readme_visuals.py
 改标题/数字：改下面 CFG 即可，不用重画
 """
-import pathlib, re, shutil, subprocess, sys, tempfile
+import pathlib, re, shutil, subprocess, sys, tempfile, time
 from urllib.parse import quote
 
 CFG = {
@@ -17,6 +17,12 @@ BLUE, ORANGE, GREY = "#1B44C8", "#E4593A", "#c3cad6"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 def find_edge():
+    for p in ("/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+              "/mnt/c/Program Files/Microsoft/Edge/Application/msedge.exe",
+              "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+              "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe"):
+        if pathlib.Path(p).exists():
+            return p
     for n in ("msedge.exe", "microsoft-edge", "google-chrome", "chrome"):
         p = shutil.which(n)
         if p:
@@ -34,34 +40,59 @@ def to_win(p):
         return "C:\\" + s[7:].replace("/", "\\")
     return s.replace("/", "\\")
 
-def render(html, out_png, w, h):
-    edge = find_edge()
-    if not edge:
-        print("⚠️ 找不到 Edge/Chrome，跳过渲染"); return False
-    tmp = pathlib.Path(tempfile.mkdtemp())
-    f = tmp / "x.html"; f.write_text(html, encoding="utf-8")
-    out_png.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run([edge, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-                    f"--window-size={w},{h}", f"--screenshot={to_win(out_png)}",
-                    to_win(f)], capture_output=True)
-    print("✓", out_png.relative_to(ROOT), out_png.stat().st_size, "bytes")
-    return out_png.exists()
-
 def parse_rows(text):
     rows = []
     for line in text.splitlines():
         if not line.startswith("| ") or "`" not in line:
             continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        cells = [c.strip() for c in line.strip("|").split("|")]
         if len(cells) < 2:
             continue
-        name, st = cells[0], cells[1]
-        for mark, v, lab, col in (("✅",1.0,"已 掌 握",BLUE),
-                                  ("🟡",0.55,"进 行 中",ORANGE),
-                                  ("⬜",0.0,"未 开 始",GREY)):
+        if len(cells) >= 5:
+            cat, name, st = cells[0], cells[1], cells[2]
+        else:
+            cat, name, st = "", cells[0], cells[1]
+        for mark, v, lab, col in (("\u2705", 1.0, "\u5df2 \u638c \u63e1", BLUE),
+                                  ("\U0001f7e1", 0.55, "\u8fdb \u884c \u4e2d", ORANGE),
+                                  ("\u2b1c", 0.0, "\u672a \u5f00 \u59cb", GREY)):
             if mark in st:
-                rows.append((name, v, lab, col)); break
+                rows.append((name, v, lab, col, cat)); break
     return rows
+
+def workdir():
+    for cand in ("/mnt/c/temp/readme_visuals", str(pathlib.Path.home() / ".cache" / "readme_visuals")):
+        p = pathlib.Path(cand)
+        try:
+            p.mkdir(parents=True, exist_ok=True)
+            return p
+        except Exception:
+            pass
+    return pathlib.Path(tempfile.gettempdir())
+
+def win_path(p):
+    s = str(p)
+    if "/mnt/c/" in s or s.startswith("/mnt/"):
+        return s.replace("/mnt/c/", "C:\\").replace("/", "\\")
+    return s
+
+def render(html, out_png, w, h):
+    edge = find_edge()
+    if not edge:
+        print("⚠️ 找不到 Edge/Chrome，跳过渲染"); return False
+    tmp = workdir()
+    f = tmp / "page.html"; f.write_text(html, encoding="utf-8")
+    shot = tmp / "page.png"
+    if shot.exists(): shot.unlink()
+    subprocess.run([edge, "--headless=new", "--no-sandbox", "--disable-gpu", "--hide-scrollbars",
+                    f"--window-size={w},{h}", "--screenshot=" + win_path(shot), win_path(f)],
+                   capture_output=True)
+    for _ in range(30):                     # Edge 写盘有延迟，轮询等一下
+        if shot.exists():
+            out_png.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy(shot, out_png)
+            return True
+        time.sleep(0.2)
+    return False
 
 def banner_html(c):
     return f'''<html><head><meta charset="utf-8"><style>
@@ -81,16 +112,25 @@ h1{{margin:0;padding:58px 0 0 68px;font-size:58px;letter-spacing:3px;color:#1220
 </div></body></html>'''
 
 def progress_html(rows):
-    h = 44 + 34 + 3 + 30 + len(rows) * 52 + 40
-    body = "".join(
-        f'<div class="row"><div class="nm">{n}</div><div class="track">'
-        f'<div class="fill" style="width:{v*520:.0f}px;background:{c}"></div></div>'
-        f'<div class="st">{lab}</div></div>' for n, v, lab, c in rows)
+    h = 44 + 34 + 3 + 30 + 40
+    parts, last = [], None
+    for n, v, lab, c, cat in rows:
+        if cat and cat != last:
+            parts.append(f'<div class="cat">{cat}</div>')
+            last = cat
+            h += 42
+        parts.append(
+            f'<div class="row"><div class="nm">{n}</div><div class="track">'
+            f'<div class="fill" style="width:{v*520:.0f}px;background:{c}"></div></div>'
+            f'<div class="st">{lab}</div></div>')
+        h += 52
+    body = "".join(parts)
     html = f'''<html><head><meta charset="utf-8"><style>
 html,body{{margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;background:#fff}}
 .wrap{{width:1180px;padding:44px 44px 36px}}
 .hd{{font-size:34px;font-weight:700;color:#12203a;letter-spacing:2px}}
 .rule{{height:3px;background:{BLUE};margin:18px 0 30px;width:120px}}
+.cat{{font-size:15px;color:#8792a8;letter-spacing:2px;margin:14px 0 8px;border-left:3px solid #c3cad6;padding-left:10px}}
 .row{{display:flex;align-items:center;height:52px}}
 .nm{{width:400px;font-size:21px;color:#26314a}}
 .track{{width:520px;height:18px;background:#eef1f6;border-radius:9px;overflow:hidden}}
@@ -139,6 +179,8 @@ def nav_block():
     for name, mds in scan_dirs():
         cell = " ｜ ".join(f"[{'README' if m == 'README.md' else m[:-3][9:]}]({name}{m})" for m in mds[:6])
         lines.append(f"| `{name}` | {cell} |")
+    lines.append(timeline_block())
+    lines.append(timeline_block())
     lines += ["", "[↑ 回到顶部](#top)", "", NAV_END]
     return "\n".join(lines)
 
@@ -213,5 +255,34 @@ def refresh_badges(c):
         t = "\n".join(out)
     rm.write_text(t, encoding="utf-8")
     print("✓ 徽章已刷新（可点击）")
+
+def all_notes():
+    """收集仓库里所有笔记：(日期, 目录, 文件名)"""
+    out = []
+    for d in sorted(ROOT.iterdir()):
+        if not d.is_dir() or d.name in ("assets", "tools", ".git"):
+            continue
+        for p in d.glob("*.md"):
+            if p.name == "README.md":
+                continue
+            m = re.match(r"(\d{8})_(.+)\.md$", p.name)
+            if m:
+                out.append((m.group(1), d.name, p.name, m.group(2)))
+    return sorted(out, reverse=True)
+
+def timeline_block(limit=25):
+    ns = all_notes()
+    if not ns:
+        return ""
+    lines = ["", '<a id="timeline"></a>', "", "## 📅 时间线", "",
+             "| 日期 | 位置 | 笔记 |", "|---|---|---|"]
+    for day, d, f, title in ns[:limit]:
+        date = f"{day[:4]}-{day[4:6]}-{day[6:]}"
+        lines.append(f"| {date} | `{d}/` | [{title}]({d}/{f}) |")
+    if len(ns) > limit:
+        lines.append(f"| … |  | 共 {len(ns)} 篇 |")
+    lines += ["", "[↑ 回到顶部](#top)"]
+    return "\n".join(lines)
+
 if __name__ == "__main__":
     main()
