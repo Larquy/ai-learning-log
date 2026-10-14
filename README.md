@@ -1,3 +1,5 @@
+<a id="top"></a>
+
 <div align="center">
 
 ![AI 学习记录](assets/banner.png)
@@ -9,6 +11,30 @@
 </div>
 
 ---
+
+<!-- NAV:BEGIN -->
+<div align="center">
+
+[🗺️ 知识地图](#map)　｜　[📌 待学](#todo)　｜　[🧪 实战](#practice)　｜　[🔍 概念](#concepts)　｜　[📂 分类导航](#nav)
+
+</div>
+
+<a id="nav"></a>
+
+## 📂 分类导航
+
+| 目录 | 笔记 |
+|---|---|
+| `00-setup/` | [环境清单](00-setup/20260921_环境清单.md) ｜ [云GPU上手清单](00-setup/20260923_云GPU上手清单.md) |
+| `01-pytorch-basics/` | [README](01-pytorch-basics/README.md) |
+| `02-transformer/` | [README](02-transformer/README.md) |
+| `03-database/` | [README](03-database/README.md) |
+| `04-systems/` | [README](04-systems/README.md) |
+| `notes/` | [Jev与System-One模型](notes/20260921_Jev与System-One模型.md) ｜ [KV-Cache](notes/20260921_KV-Cache.md) ｜ [Web-Mining（网络数据挖掘）](notes/20260921_Web-Mining（网络数据挖掘）.md) ｜ [论文_Dont-Mask-the-Environment](notes/20260921_论文_Dont-Mask-the-Environment.md) ｜ [推理负载与梯度检查点](notes/20260922_推理负载与梯度检查点.md) ｜ [深度学习前置知识清单](notes/20260922_深度学习前置知识清单.md) |
+
+[↑ 回到顶部](#top)
+
+<!-- NAV:END -->
 
 <details>
 <summary>仓库说明（内部规则）</summary>
@@ -32,6 +58,8 @@
 | 09-21 | [KV Cache](notes/20260921_KV-Cache.md) |
 
 ---
+
+<a id="map"></a>
 
 ## 🗺️ 知识地图（学到哪了）
 
@@ -60,6 +88,8 @@
 </details>
 
 📚 **学习资源汇总 → [学习资源.md](学习资源.md)**（按主题归档；每次拿到新资源自动追加）
+
+<a id="todo"></a>
 
 ## 📌 待学清单
 
@@ -102,6 +132,8 @@
 
 ---
 
+<a id="practice"></a>
+
 ## 🧪 实战项目
 
 | 项目 | 状态 | 说明 | 代码 |
@@ -109,6 +141,8 @@
 | **XOR 从零实现** | 🟡 骨架就位，待实现 | 纯 Python 手写两层网络（2→4→1）与反向传播，不用框架；含任务清单与验收标准 | [05-practice/xor-from-scratch](05-practice/xor-from-scratch/) |
 
 ---
+
+<a id="concepts"></a>
 
 ## 🔍 概念速查
 

@@ -4,7 +4,7 @@
 用法：  python tools/readme_visuals.py
 改标题/数字：改下面 CFG 即可，不用重画
 """
-import pathlib, shutil, subprocess, sys, tempfile
+import pathlib, re, shutil, subprocess, sys, tempfile
 
 CFG = {
     "title": "AI 学习记录",
@@ -107,9 +107,52 @@ def main():
         print("⚠️ README 里没找到「知识地图」表格（表格第二列要有 ✅/🟡/⬜）")
         sys.exit(1)
     render(banner_html(CFG), ROOT / "assets/banner.png", 1200, 246)
+    refresh_nav()
     html, h = progress_html(rows)
     render(html, ROOT / "assets/progress.png", 1180, h)
     print(f"共 {len(rows)} 个模块")
 
+
+NAV_BEGIN = "<!-- NAV:BEGIN -->"
+NAV_END = "<!-- NAV:END -->"
+
+def scan_dirs():
+    out = []
+    for d in sorted(ROOT.iterdir()):
+        if not d.is_dir() or d.name in ("assets", "tools", ".git"):
+            continue
+        mds = sorted(p.name for p in d.glob("*.md") if not p.name.startswith("README"))
+        if mds:
+            out.append((d.name + "/", mds))
+        elif (d / "README.md").exists():          # 只有 README 的阶段目录也列出来（点进去看路线）
+            out.append((d.name + "/", ["README.md"]))
+    return out
+
+def nav_block():
+    links = ("[🗺️ 知识地图](#map)　｜　[📌 待学](#todo)　｜　"
+             "[🧪 实战](#practice)　｜　[🔍 概念](#concepts)　｜　[📂 分类导航](#nav)")
+    lines = [NAV_BEGIN, '<div align="center">', "", links, "", "</div>", "",
+             '<a id="nav"></a>', "", "## 📂 分类导航", "", "| 目录 | 笔记 |", "|---|---|"]
+    for name, mds in scan_dirs():
+        cell = " ｜ ".join(f"[{'README' if m == 'README.md' else m[:-3][9:]}]({name}{m})" for m in mds[:6])
+        lines.append(f"| `{name}` | {cell} |")
+    lines += ["", "[↑ 回到顶部](#top)", "", NAV_END]
+    return "\n".join(lines)
+
+def refresh_nav():
+    rm = ROOT / "README.md"
+    t = rm.read_text(encoding="utf-8")
+    if not t.startswith('<a id="top"></a>'):
+        t = '<a id="top"></a>\n\n' + t
+    block = nav_block()
+    if NAV_BEGIN in t and NAV_END in t:
+        i = t.index(NAV_BEGIN)
+        j = t.index(NAV_END) + len(NAV_END)
+        t = t[:i] + block + t[j:]
+    else:
+        k = t.index("\n", t.index("---", t.index("</div>"))) + 1
+        t = t[:k] + "\n" + block + "\n" + t[k:]
+    rm.write_text(t, encoding="utf-8")
+    print("✓ README 导航已刷新")
 if __name__ == "__main__":
     main()
