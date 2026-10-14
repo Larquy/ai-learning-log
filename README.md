@@ -10,10 +10,15 @@
 
 ---
 
+<details>
+<summary>仓库说明（内部规则）</summary>
+
 > 🧭 **分工**：本仓库只放**自学线**（按阶段路线学的笔记、论文阅读、AI 日报概念）；
 > **学校课程**的课堂纪要放 [tech-learning-log](https://github.com/Larquy/tech-learning-log) ✓ 同主题**不重复维护** ✓
->
+
 > 📏 **规矩**：笔记自己整理 · **代码跑通才提交** · 不放个人材料（提交前自动隐私扫描兜底）✓
+
+</details>
 
 ---
 
