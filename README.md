@@ -1,8 +1,6 @@
 <div align="center">
 
-# AI 学习记录
-
-**从零基础 → 大模型训练与推理系统**
+![AI 学习记录](assets/banner.png)
 
 ![阶段](https://img.shields.io/badge/%E9%98%B6%E6%AE%B5-02%20%2F%2005-1B44C8?style=flat-square)
 ![已通](https://img.shields.io/badge/%E2%9C%85%20%E5%B7%B2%E9%80%9A-1%20%E4%B8%AA%E6%A8%A1%E5%9D%97-1B44C8?style=flat-square)
@@ -32,6 +30,12 @@
 
 ## 🗺️ 知识地图（学到哪了）
 
+![学习进度](assets/progress.png)
+
+<details>
+<summary><b>详细清单（每个模块掌握了什么）</b></summary>
+
+
 图例：`██████████` ✅ 能自己讲清＋动手做过 ｜ `██████░░░░` 🟡 正在学 ｜ `░░░░░░░░░░` ⬜ 还没开始
 
 | 模块 | 状态 | 已经掌握的内容 | 笔记 |
@@ -47,6 +51,8 @@
 | Transformer 与大模型 | `██████░░░░` 🟡 | 正在读 Attention is All You Need；下一步 GPU 内存层级 → FlashAttention → nanoGPT/LoRA（**课程侧**的词元化/Word2Vec/架构笔记见 [tech-learning-log](https://github.com/Larquy/tech-learning-log)）| — |
 | 数据库与 AI4DB | `░░░░░░░░░░` ⬜ | 存储与索引 / 查询优化 → GPTuner | — |
 | 分布式训练 | `░░░░░░░░░░` ⬜ | 数据并行 / ZeRO / 通信 → mLoRA 复现 | — |
+
+</details>
 
 📚 **学习资源汇总 → [学习资源.md](学习资源.md)**（按主题归档；每次拿到新资源自动追加）
 
