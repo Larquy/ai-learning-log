@@ -4,8 +4,6 @@
 
 **从零基础 → 大模型训练与推理系统**
 
-四川大学 · 计算机科学与技术
-
 ![阶段](https://img.shields.io/badge/%E9%98%B6%E6%AE%B5-02%20%2F%2005-1B44C8?style=flat-square)
 ![已通](https://img.shields.io/badge/%E2%9C%85%20%E5%B7%B2%E9%80%9A-1%20%E4%B8%AA%E6%A8%A1%E5%9D%97-1B44C8?style=flat-square)
 ![进行中](https://img.shields.io/badge/%F0%9F%9F%A1%20%E8%BF%9B%E8%A1%8C%E4%B8%AD-6%20%E4%B8%AA%E6%A8%A1%E5%9D%97-E4593A?style=flat-square)
